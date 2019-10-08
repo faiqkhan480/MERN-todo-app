@@ -1,0 +1,41 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: black;
+}
+
+.App-link {
+  color: #09d3ac;
+}
+
+.task {
+  /*color: #09d3ac;*/
+  cursor: pointer;
+}
+
+.jumbo {
+  height: 100vh;
+  margin-bottom: 0rem !important;
+  /*background-color: #282c34 !important;*/
+}
+
+.list-group {
+  margin-top: 20px;
+}
+
+/*.wrap {*/
+/*  margin-top: 20px;*/
+/*}*/
