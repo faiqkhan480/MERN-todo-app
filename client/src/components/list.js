@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { addItems, deleteItem, addText, getTasks, getTask, updateTask  } from '../redux/todo-action'
 import {connect} from 'react-redux'
-import { Container, Typography, TextField, CssBaseline, Button, List, ListItem, ListItemIcon, ListItemText, Collapse, Fab }from '@material-ui/core/index';
+import { Box, Container, Typography, TextField, CssBaseline, Button, List, ListItem, ListItemIcon, ListItemText, Collapse, Fab }from '@material-ui/core/index';
 import { withStyles } from '@material-ui/core/styles/index';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
@@ -12,7 +12,8 @@ class TaskList extends Component {
         super(props);
         this.state = {
             label: false,
-            open: false
+            open: false,
+            currIndex:null
         }
     }
 
@@ -55,9 +56,8 @@ class TaskList extends Component {
 
     }
 
-    handleClick(){
-        // setOpen(!open);
-        this.setState({open: !this.state.open})
+    handleClick(index){
+        this.setState({open: !this.state.open,  currIndex: index})
     };
 
     render(){
@@ -66,9 +66,9 @@ class TaskList extends Component {
         return(
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
-                <div className={classes.paper}>
-                    <Typography component="h1" variant="h5">
-                        Todo_List
+                <Box className={classes.paper} component="div" p={2} borderRadius={22}>
+                    <Typography component="h1" variant="h4" className='text'>
+                        Todo List
                     </Typography>
                     <form className={classes.form} Validate onSubmit={label ? this.handleUpdate.bind(this) : this.handleSubmit.bind(this)}>
                         <TextField type="text" name="task" value={text || ''} onChange={this.onUpdate.bind(this)}
@@ -77,6 +77,7 @@ class TaskList extends Component {
                             required
                             fullWidth
                             label="Todo"
+                            multiline
                         />
                         <Button
                             type="submit"
@@ -93,10 +94,10 @@ class TaskList extends Component {
                         {item.map((item, index) => {
                             return(
                                 <>
-                                    <ListItem button key={index} className={classes.items} onClick={this.handleClick.bind(this)}>
+                                    <ListItem button key={index} className={classes.items} onClick={this.handleClick.bind(this, index)}>
                                         {item.task}
                                     </ListItem>
-                                    <Collapse in={open} timeout="auto" unmountOnExit>
+                                    <Collapse in={open && (this.state.currIndex == index)} timeout="auto" unmountOnExit>
                                         <List component="div" disablePadding>
                                             <ListItem className={classes.icons}>
                                                 <ListItemIcon>
@@ -114,7 +115,7 @@ class TaskList extends Component {
                             )
                         })}
                     </List>
-                </div>
+                </Box>
             </Container>
         )
     }

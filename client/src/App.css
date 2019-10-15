@@ -36,13 +36,13 @@
   margin-top: 20px;
 }
 
-/*.wrap {*/
-/*  margin-top: 20px;*/
-/*}*/
-
-/*.body {*/
-/*  background: linear-gradient(45deg, #ffb75e 30%, #ed8f03 90%);*/
-/*  min-height: 100vh;*/
-/*}*/
-
-/*#ffb75e, #ed8f03*/
+.text {
+  text-transform: uppercase;
+  background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+ /*font: {*/
+ /*   	size: 20vw;*/
+ /*   	family: $font;*/
+ /*   };*/
+}
